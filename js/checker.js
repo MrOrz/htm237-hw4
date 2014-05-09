@@ -37,9 +37,16 @@ window.fbAsyncInit = function(){
       // 2. 以 FB.api 拿到使用者的 group 列表
       FB.api('/me/groups', function(resp){
         console.log('User groups:', resp.data);
-        // 拿到使用者 group 列表的 response 之後：
-        // results.after('<div class="hw4-complete alert alert-info">掃描完成</div>');
+        var i, group;
+        for(i=0; i<resp.data.length; i+=1){
+          group = resp.data[i];
+          if( junkGroups.indexOf(group.id) !== -1 ){
+            results.append('<tr><td>'+group.id+'</td><td>'+group.name+'</td></tr>');
+          }
+        }
 
+        // 拿到使用者 group 列表的 response 之後：
+        results.after('<div class="hw4-complete alert alert-info">掃描完成</div>');
       });
     },{scope: 'user_groups'});
   });
