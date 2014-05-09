@@ -32,11 +32,15 @@ window.fbAsyncInit = function(){
 
     // 1. 讓使用者登入此 Facebook App (FB.login)
     FB.login(function(){
-      // 2. 以 FB.api 拿到使用者的 group 列表
-      // 拿到使用者 group 列表的 response 之後：
-      // results.after('<div class="hw4-complete alert alert-info">掃描完成</div>');
       console.log('Logged in!');
 
+      // 2. 以 FB.api 拿到使用者的 group 列表
+      FB.api('/me/groups', function(resp){
+        console.log('User groups:', resp.data);
+        // 拿到使用者 group 列表的 response 之後：
+        // results.after('<div class="hw4-complete alert alert-info">掃描完成</div>');
+
+      });
     },{scope: 'user_groups'});
   });
 };
