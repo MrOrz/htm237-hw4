@@ -20,7 +20,7 @@ $.getJSON('http://jsbin.com/jaziroja/1', {}, function(data){
 // 設定 Facebook AppID
 window.fbAsyncInit = function(){
   FB.init({
-    appId: '259195264246285', // 若可以，請換成自己的 App ID !
+    appId: '699520453426867', // 若可以，請換成自己的 App ID !
     status: true
   });
 
@@ -31,9 +31,12 @@ window.fbAsyncInit = function(){
     $('.hw4-complete').remove(); // 移除「掃描完成」
 
     // 1. 讓使用者登入此 Facebook App (FB.login)
-    // 2. 以 FB.api 拿到使用者的 group 列表
-    // 拿到使用者 group 列表的 response 之後：
-    // results.after('<div class="hw4-complete alert alert-info">掃描完成</div>');
+    FB.login(function(){
+      // 2. 以 FB.api 拿到使用者的 group 列表
+      // 拿到使用者 group 列表的 response 之後：
+      // results.after('<div class="hw4-complete alert alert-info">掃描完成</div>');
+      console.log('Logged in!');
 
+    },{scope: 'user_groups'});
   });
 };
